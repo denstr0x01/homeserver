@@ -26,6 +26,28 @@
   register: result
   until: result is succeeded
 
+- name: Install oh-my-zsh
+  include_role:
+    name: gantsign.oh-my-zsh
+  vars:
+    oh_my_zsh_install: yes
+    oh_my_zsh_theme: agnoster
+    oh_my_zsh_plugins:
+      - git
+      - zsh-syntax-highlighting
+      - zsh-autosuggestions
+      - docker
+      - extract
+    users:
+      - username: root
+      # - username: "{{ default_user }}"
+      # - username: vagrant
+
+- name: oh-my-zsh dependency
+  ansible.builtin.shell: |
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
 #  - name: Configure smartmontools
 
 - name: "Set hostname to {{ ansible_nas_hostname }}"

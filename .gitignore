@@ -8,7 +8,7 @@ inventories
 roles/bertvv.samba
 roles/geerlingguy.docker
 roles/geerlingguy.nfs
-
+roles/gantsign.oh-my-zsh
 # Vim
 [._]sw[a-p]
 
